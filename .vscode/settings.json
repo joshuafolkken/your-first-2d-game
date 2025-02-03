@@ -3,5 +3,12 @@
   "[gdscript]": {
     "editor.defaultFormatter": "EddieDover.gdscript-formatter-linter"
   },
-  "cSpell.words": ["gdformat", "gdlint", "gdscript", "runtest"]
+  "cSpell.words": [
+    "elif",
+    "gdformat",
+    "gdlint",
+    "gdscript",
+    "onready",
+    "runtest"
+  ]
 }
