@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxtdr1xjeroo5"]
+[gd_scene load_steps=8 format=3 uid="uid://bxtdr1xjeroo5"]
 
 [ext_resource type="Texture2D" uid="uid://djtpi8ie86yb3" path="res://art/playerGrey_up1.png" id="1_bktlc"]
+[ext_resource type="Script" uid="uid://bbj88bnapd4t0" path="res://src/player.gd" id="1_pg28d"]
 [ext_resource type="Texture2D" uid="uid://uogoyk1sp0hm" path="res://art/playerGrey_up2.png" id="2_pg28d"]
 [ext_resource type="Texture2D" uid="uid://c7pon2i58u00x" path="res://art/playerGrey_walk1.png" id="3_21lrq"]
 [ext_resource type="Texture2D" uid="uid://mhm1qci1x8r" path="res://art/playerGrey_walk2.png" id="4_rq7o7"]
@@ -35,13 +36,15 @@ radius = 27.0
 height = 68.0
 
 [node name="Player" type="Area2D"]
+script = ExtResource("1_pg28d")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_nrj4s")
-animation = &"up"
-frame_progress = 0.17967
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_rclot")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
