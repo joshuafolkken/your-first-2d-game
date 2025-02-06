@@ -12,7 +12,7 @@ pre-commit:
 
     gdscript-format:
       glob: "*.gd"
-      run: gdformat {files}
+      run: gdformat {staged_files}
 
     spell-check:
       glob: "*.gd"
@@ -44,7 +44,7 @@ pre-push:
 
     gdscript-lint:
       glob: "*.gd"
-      run: gdlint {files}
+      run: gdlint {staged_files}
 
     # gdscript-test:
     #   run: |
