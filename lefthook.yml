@@ -14,6 +14,10 @@ pre-commit:
       glob: "*.gd"
       run: gdformat {files}
 
+    spell-check:
+      glob: "*.gd"
+      run: npx cspell {staged_files}
+
 pre-push:
   parallel: true
 
