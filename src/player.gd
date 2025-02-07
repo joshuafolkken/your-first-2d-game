@@ -1,3 +1,4 @@
+class_name Player
 extends Area2D
 
 signal hit
@@ -16,7 +17,6 @@ const ANIMATION_STATE := {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#hide()
 	pass
 
 
@@ -80,3 +80,7 @@ func start(pos: Vector2) -> void:
 	position = pos
 	show()
 	_collision.disabled = false
+
+
+func _on_hit() -> void:
+	pass  # Replace with function body.
