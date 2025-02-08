@@ -1,9 +1,9 @@
 extends Node
 
-const BASE_ROTATION_OFFSET = PI / 2
-const RANDOM_ROTATION_RANGE = PI / 4
-const MOB_SPEED_MIN = 150
-const MOB_SPEED_MAX = 250
+const BASE_ROTATION_OFFSET := PI / 2
+const RANDOM_ROTATION_RANGE := PI / 4
+const MOB_SPEED_MIN := 150
+const MOB_SPEED_MAX := 250
 
 @export var mob_scene: PackedScene
 
@@ -15,23 +15,32 @@ var _score := 0
 @onready var _start_timer: Timer = $StartTimer
 @onready var _start_position: Marker2D = $StartPosition
 @onready var _mob_spawn_location: PathFollow2D = $MobPath/MobSpawnLocation
+@onready var _hud: Hud = $HUD
 
 
 func _ready() -> void:
-	_configure_timers()
-	_start_new_game()
+	_connect_signals()
 
 
-func _configure_timers() -> void:
+func _connect_signals() -> void:
 	_mob_timer.timeout.connect(_on_mob_timer_timeout)
 	_score_timer.timeout.connect(_on_score_timer_timeout)
 	_start_timer.timeout.connect(_on_start_timer_timeout)
+	_hud.start_game.connect(_start_new_game)
 
 
 func _start_new_game() -> void:
-	_score = 0
+	_reset_game_state()
 	_player.start(_start_position.position)
 	_start_timer.start()
+
+	_hud.update_score(_score)
+	_hud.show_message("Get Ready")
+
+
+func _reset_game_state() -> void:
+	get_tree().call_group("mobs", "queue_free")
+	_score = 0
 
 
 func _process(_delta: float) -> void:
@@ -43,15 +52,25 @@ func _on_player_hit() -> void:
 
 
 func _end_game() -> void:
+	_stop_timers()
+	_hud.show_game_over()
+
+
+func _stop_timers() -> void:
 	_score_timer.stop()
 	_mob_timer.stop()
 
 
 func _on_score_timer_timeout() -> void:
 	_score += 1
+	_hud.update_score(_score)
 
 
 func _on_start_timer_timeout() -> void:
+	_start_timers()
+
+
+func _start_timers() -> void:
 	_mob_timer.start()
 	_score_timer.start()
 
