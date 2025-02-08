@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://6vf5t8xu8g0q"]
 
-[ext_resource type="Script" uid="uid://thlpg3chbld2" path="res://src/main.gd" id="1_5q4o7"]
-[ext_resource type="PackedScene" uid="uid://mwvdkydc0yrp" path="res://src/mob.tscn" id="2_3cfgd"]
-[ext_resource type="PackedScene" uid="uid://bxtdr1xjeroo5" path="res://src/player.tscn" id="3_fyndt"]
-[ext_resource type="PackedScene" uid="uid://78h7bg8n2yj1" path="res://src/hud.tscn" id="4_3cfgd"]
+[ext_resource type="Script" uid="uid://thlpg3chbld2" path="res://scripts/main.gd" id="1_5q4o7"]
+[ext_resource type="PackedScene" uid="uid://mwvdkydc0yrp" path="res://scenes/mob.tscn" id="2_3cfgd"]
+[ext_resource type="PackedScene" uid="uid://bxtdr1xjeroo5" path="res://scenes/player.tscn" id="3_fyndt"]
+[ext_resource type="PackedScene" uid="uid://78h7bg8n2yj1" path="res://scenes/hud.tscn" id="4_3cfgd"]
 
 [sub_resource type="Curve2D" id="Curve2D_1bvp3"]
 _data = {
