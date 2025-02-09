@@ -16,6 +16,8 @@ var _score := 0
 @onready var _start_position: Marker2D = $StartPosition
 @onready var _mob_spawn_location: PathFollow2D = $MobPath/MobSpawnLocation
 @onready var _hud: Hud = $HUD
+@onready var _music: AudioStreamPlayer = $Music
+@onready var _death_sound: AudioStreamPlayer = $DeathSound
 
 
 func _ready() -> void:
@@ -33,18 +35,14 @@ func _start_new_game() -> void:
 	_reset_game_state()
 	_player.start(_start_position.position)
 	_start_timer.start()
-
 	_hud.update_score(_score)
 	_hud.show_message("Get Ready")
+	_music.play()
 
 
 func _reset_game_state() -> void:
 	get_tree().call_group("mobs", "queue_free")
 	_score = 0
-
-
-func _process(_delta: float) -> void:
-	pass
 
 
 func _on_player_hit() -> void:
@@ -54,6 +52,8 @@ func _on_player_hit() -> void:
 func _end_game() -> void:
 	_stop_timers()
 	_hud.show_game_over()
+	_music.stop()
+	_death_sound.play()
 
 
 func _stop_timers() -> void:
